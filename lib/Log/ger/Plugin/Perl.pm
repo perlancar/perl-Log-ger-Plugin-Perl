@@ -62,9 +62,9 @@ sub get_hooks {
                     my $fullname = "$args{target_arg}\::$name";
                     B::CallChecker::cv_set_call_checker(
                         \&{$fullname},
-                        sub { B::SVOP->new("const",0,!1) },
-                        #\!1,
-                        $logger,
+                        sub { B::SVOP->new("anoncode", $logger, $logger) },
+                        #sub { B::SVOP->new("const", 0, !1) },
+                        \!1,
                     );
                 }
                 [1];
